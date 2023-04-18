@@ -78,13 +78,19 @@ def run_augmentation(coco_file, img_dir, out_dir, total_num_img, aug_transform, 
 def create_aug_transform(yaml_file):
     with open(yaml_file) as file:
         cfgs = yaml.safe_load(file)
-    print(cfgs["HorizontalFlip"]["p"])
     aug_transform = A.Compose(
         [
             A.HorizontalFlip(p=cfgs["HorizontalFlip"]["p"]),
             A.MotionBlur(blur_limit=cfgs["MotionBlur"]["blur_limit"], p=cfgs["MotionBlur"]["p"]),
-            A.GaussNoise(var_limit=(100, 100), p=cfgs["GaussNoise"]["p"]),
-            A.ISONoise(color_shift=(0.01, 0.05), intensity=(0.1, 0.5), p=cfgs["ISONoise"]["p"]),
+            A.GaussNoise(
+                var_limit=(cfgs["GaussNoise"]["var_limit"][0], cfgs["GaussNoise"]["var_limit"][1]),
+                p=cfgs["GaussNoise"]["p"],
+            ),
+            A.ISONoise(
+                color_shift=(cfgs["ISONoise"]["color_shift"][0], cfgs["ISONoise"]["color_shift"][1]),
+                intensity=(cfgs["ISONoise"]["intensity"][0], cfgs["ISONoise"]["intensity"][1]),
+                p=cfgs["ISONoise"]["p"],
+            ),
             A.Cutout(
                 num_holes=cfgs["Cutout"]["num_holes"],
                 max_h_size=cfgs["Cutout"]["max_h_size"],
