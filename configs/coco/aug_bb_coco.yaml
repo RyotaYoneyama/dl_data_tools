@@ -1,0 +1,28 @@
+HorizontalFlip:
+  p: 0.5
+MotionBlur:
+  blur_limit: 7
+  p: 0.5
+GaussNoise:
+  var_limit: [100, 100]
+  p: 0.5
+ISONoise:
+  color_shift: [0.01, 0.05]
+  intensity: [0.1, 0.5]
+  p: 0.5
+Cutout:
+  num_holes: 8
+  max_h_size: 8
+  max_w_size: 8
+  p: 0.5
+ColorJitter:
+  brightness: 0.2
+  contrast: 0.2
+  saturation: 0.2
+  hue: 0.1
+  p: 1
+ShiftScaleRotate:
+  shift_limit: 0.1
+  scale_limit: 0.2
+  rotate_limit: 15
+  p: 1
