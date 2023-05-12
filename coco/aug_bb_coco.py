@@ -36,7 +36,6 @@ def run_augmentation(coco_file, img_dir, out_dir, total_num_img, aug_transform, 
         category_id_to_name.values(),
     )
 
-    gts = cocoGt.loadAnns(cocoGt.getAnnIds())
     img_ids = cocoGt.getImgIds()
     count = 0
     flg_break = False
